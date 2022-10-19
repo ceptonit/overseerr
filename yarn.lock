@@ -1809,10 +1809,10 @@
   resolved "https://registry.yarnpkg.com/@hapi/hoek/-/hoek-9.3.0.tgz#8368869dcb735be2e7f5cb7647de78e167a251fb"
   integrity sha512-/c6rf4UJlmHlC9b5BaNvzAcFv7HZ2QHaV0D4/HNlBdvFnvQq8RI4kYdhyPCl7Xj+oWvTWQ8ujhqS53LIgAe6KQ==
 
-"@headlessui/react@0.0.0-insiders.b301f04":
-  version "0.0.0-insiders.b301f04"
-  resolved "https://registry.yarnpkg.com/@headlessui/react/-/react-0.0.0-insiders.b301f04.tgz#12f209097f987cddbba72de40240a12648ebe12b"
-  integrity sha512-I+UUEUkdYp+AgKU1teWUZaICEg//OWl0R1UxCB50Jzfi3APu7aSY0Y+ABrgfEWDhBYTG9hNgXvMVTNCnFu49yA==
+"@headlessui/react@1.7.3":
+  version "1.7.3"
+  resolved "https://registry.yarnpkg.com/@headlessui/react/-/react-1.7.3.tgz#853c598ff47b37cdd192c5cbee890d9b610c3ec0"
+  integrity sha512-LGp06SrGv7BMaIQlTs8s2G06moqkI0cb0b8stgq7KZ3xcHdH3qMP+cRyV7qe5x4XEW/IGY48BW4fLesD6NQLng==
 
 "@heroicons/react@1.0.6":
   version "1.0.6"
