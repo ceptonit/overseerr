@@ -1,15 +1,44 @@
 import { RefreshIcon } from '@heroicons/react/outline';
-import Router from 'next/router';
+import { useRouter } from 'next/router';
 import PR from 'pulltorefreshjs';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import ReactDOMServer from 'react-dom/server';
 
 const PullToRefresh: React.FC = () => {
+  const router = useRouter();
+  const [bodyIsLocked, setBodyIsLocked] = useState(false);
+
+  // Checks if modal has been opened/closed
+  useEffect(() => {
+    const checkBodyOverflow = () => {
+      if (document.body.style.overflow === 'hidden') {
+        setBodyIsLocked(true);
+      } else {
+        setBodyIsLocked(false);
+      }
+    };
+    window.addEventListener('transitionstart', () =>
+      setTimeout(checkBodyOverflow, 100)
+    );
+    window.addEventListener('transitionend', () =>
+      setTimeout(checkBodyOverflow, 100)
+    );
+
+    return () => {
+      window.removeEventListener('transitionstart', () =>
+        setTimeout(checkBodyOverflow, 100)
+      );
+      window.removeEventListener('transitionend', () =>
+        setTimeout(checkBodyOverflow, 100)
+      );
+    };
+  }, []);
+
   useEffect(() => {
     PR.init({
       mainElement: '#pull-to-refresh',
       onRefresh() {
-        Router.reload();
+        router.reload();
       },
       iconArrow: ReactDOMServer.renderToString(
         <div className="p-2">
@@ -28,11 +57,13 @@ const PullToRefresh: React.FC = () => {
       instructionsReleaseToRefresh: ReactDOMServer.renderToString(<div />),
       instructionsRefreshing: ReactDOMServer.renderToString(<div />),
       distReload: 60,
+      distIgnore: 15,
+      shouldPullToRefresh: () => !window.scrollY && !bodyIsLocked,
     });
     return () => {
       PR.destroyAll();
     };
-  }, []);
+  }, [bodyIsLocked, router]);
 
   return <div id="pull-to-refresh"></div>;
 };
